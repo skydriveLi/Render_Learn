@@ -1,4 +1,4 @@
-#include <stdio.h>
-#include <windows.h>
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#ifndef TEST_TEST_H
+#define TEST_TEST_H
+
+#endif

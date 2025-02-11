@@ -1,9 +1,14 @@
 #include "test/test.h"
+#include <stdio.h>
+#include <windows.h>
+
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     printf("framebuffer_size_callback %d %d \n",width,height);
-    glViewport(0,0,width,height);
+    // glViewport(0,0,width,height);
 }
 
 void keyboard_callback(GLFWwindow* window, int key,int scancode,int action,int modes)
@@ -164,6 +169,16 @@ void prepare_Shader()
 
 }
 
+void processInput(GLFWwindow *window)
+{
+        printf("GLFW_MOUSE_BUTTON_1 %d  %d\n",glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_1),GLFW_PRESS);
+        
+    if(glfwGetKey(window, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(window, true);
+    }
+}
+
 int main()
 {
     printf("Hello OpenGL!\n");
@@ -194,21 +209,18 @@ int main()
 
     // 设置opengl视口大小 清理颜色
     glViewport(0,0,800,600);
-    glClearColor(0.7,0.9,0.9,1);
+    glClearColor(0.7,0,0.9,0.5);
     
     while(!glfwWindowShouldClose(window))
     {
+        // 输入
+        processInput(window);
         glfwPollEvents();
         gl_error_check();
         
 
         // 执行清理
         glClear(GL_COLOR_BUFFER_BIT);
-
-
-
-
-
         //渲染操作
 
         //切换双缓存
